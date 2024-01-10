@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template page</title>
+  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="flex items-center justify-center my-6">
+  <h1>SUPER HERO CREATOR</h1>
+  </div>
+  <div class="m-auto">
+    <form hx-post="/add-hero" hx-target="#hero-list" hx-swap="beforeend">
+      <div class="flex items-center justify-center gap-5 mb-12">
+          <div>
+              <label for="name" class="block mb-2 text-sm font-medium text-violet-900">Super hero name: </label>
+              <input type="text" name="name" id="name" class="text-stone-50 bg-indigo-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray- dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" >
+          </div>
+          <div>
+              <label for="superpower" class="block mb-2 text-sm font-medium text-violet-900">Super hero super power: </label>
+              <input type="text" name="superpower" id="superpower" class="text-stone-50 bg-indigo-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Superpower" >
+          </div>
+          <div>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">CREATE!</button>
+          </div>
+      </div>
+    </form>
+    <div id="hero-list" class="flex items-center justify-center flex-col">
+      {{ range .Heroes}}
+      <p>
+      {{.Name}} - {{.Superpower}}
+      </p>
+      {{end}}
+    </div>
+  </div>
+  </body>
+</html>
